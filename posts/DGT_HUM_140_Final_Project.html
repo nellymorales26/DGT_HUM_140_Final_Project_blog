@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,9 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -212,9 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="august-2-2024">August 2, 2024</h2>
 <section id="introduction" class="level3">
 <h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>In universities and colleges throughout the world, student enrollment has increased drastically over time, as secondary institutions and mass media encourage students to acquire higher education to benefit themselves and their career. Although numbers in enrollment have increased, so have the dropout rates in these same institutions. However, researchers have strived to prevent a student’s likelihood of dropping out of college and increase their potential academic success. They do so by looking at various factors in their lives such as their parent’s education level and occupation, any disability they may have, and their home environment.</p>
-<p>The dataset that I have chosen explores these kinds of variables. The dataset was retrieved from the UC Irvine Machine Learning Repository, and was created by Valentim Realinho, Mónica Vieira Martins, Jorge Machado, and Luís Baptista. The data was collected from students going to college in the country of Portugal. The dataset includes information about the student’s demographics, socioeconomic status, and marital status, to name a few. Variables were measured in a variety of ways, such as numbers that indicated varying nationalities or levels of education and numbers 1 and 0 that indicated whether the student was married or not.</p>
-<p>My motivation from the data comes from a place of relatability. I would like to know more about the factors that increase the likelihood of college students dropping out as I am currently one at the time of creating this project. The question that I am seeking to answer is: Which factors are most predictive of a student’s likelihood to drop out? My hypothesis is that financial constraints may be a substantial factor in why students dropout of college.</p>
+<p>In universities and colleges throughout the world, student enrollment has increased drastically over time, as secondary institutions and mass media encourage students to acquire higher education to benefit themselves and their career. Although numbers in enrollment have increased, so have the dropout rates in these same institutions. However, researchers have strived to prevent a student’s likelihood of dropping out of college and increase their potential academic success. The dataset I retrieved was from the UC Irvine Machine Learning Repository, and was created by Valentim Realinho, Mónica Vieira Martins, Jorge Machado, and Luís Baptista. The data was collected from students going to college in the country of Portugal. The question that I am seeking to answer is: Which factors are most predictive of a student’s likelihood to drop out? My hypothesis is that financial constraints may be a substantial factor in why students dropout of college.</p>
 <p>Link to data: https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success</p>
 </section>
 <section id="methods" class="level3">
@@ -226,9 +221,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="results" class="level3">
 <h3 class="anchored" data-anchor-id="results">Results</h3>
 <p>The following visualizations are an exploration of the dataset. Here, I lay out a few key variables that showcase the demographics of the population, as well as an overview of what the variables are and how they were recorded for each individual student.</p>
-<section id="exploratory-data-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h4>
-<div id="9ad635f6" class="cell" data-execution_count="176">
+<section id="importing-packages-and-dataframes" class="level4">
+<h4 class="anchored" data-anchor-id="importing-packages-and-dataframes">Importing packages and dataframes</h4>
+<div id="9ad635f6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import every package needed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -249,197 +244,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">## Code obtained from website ends here</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of the DataFrame</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>X_copy <span class="op">=</span> X.copy()</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>y_copy <span class="op">=</span> y.copy()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>df_col_merged <span class="op">=</span> pd.concat([X, y], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df_col_merged.head()</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">## The target variable, which consists of the status of each student in terms of </span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">## enrollment, dropout or graduated, was separated from the main dataframe,</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">## so I had to merge them to get a total of 37 columns.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="176">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Marital Status</th>
-<th data-quarto-table-cell-role="th">Application mode</th>
-<th data-quarto-table-cell-role="th">Application order</th>
-<th data-quarto-table-cell-role="th">Course</th>
-<th data-quarto-table-cell-role="th">Daytime/evening attendance</th>
-<th data-quarto-table-cell-role="th">Previous qualification</th>
-<th data-quarto-table-cell-role="th">Previous qualification (grade)</th>
-<th data-quarto-table-cell-role="th">Nacionality</th>
-<th data-quarto-table-cell-role="th">Mother's qualification</th>
-<th data-quarto-table-cell-role="th">Father's qualification</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (credited)</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (enrolled)</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (evaluations)</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (approved)</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (grade)</th>
-<th data-quarto-table-cell-role="th">Curricular units 2nd sem (without evaluations)</th>
-<th data-quarto-table-cell-role="th">Unemployment rate</th>
-<th data-quarto-table-cell-role="th">Inflation rate</th>
-<th data-quarto-table-cell-role="th">GDP</th>
-<th data-quarto-table-cell-role="th">Target</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>17</td>
-<td>5</td>
-<td>171</td>
-<td>1</td>
-<td>1</td>
-<td>122.0</td>
-<td>1</td>
-<td>19</td>
-<td>12</td>
-<td>...</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.000000</td>
-<td>0</td>
-<td>10.8</td>
-<td>1.4</td>
-<td>1.74</td>
-<td>Dropout</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1</td>
-<td>15</td>
-<td>1</td>
-<td>9254</td>
-<td>1</td>
-<td>1</td>
-<td>160.0</td>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-<td>...</td>
-<td>0</td>
-<td>6</td>
-<td>6</td>
-<td>6</td>
-<td>13.666667</td>
-<td>0</td>
-<td>13.9</td>
-<td>-0.3</td>
-<td>0.79</td>
-<td>Graduate</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1</td>
-<td>1</td>
-<td>5</td>
-<td>9070</td>
-<td>1</td>
-<td>1</td>
-<td>122.0</td>
-<td>1</td>
-<td>37</td>
-<td>37</td>
-<td>...</td>
-<td>0</td>
-<td>6</td>
-<td>0</td>
-<td>0</td>
-<td>0.000000</td>
-<td>0</td>
-<td>10.8</td>
-<td>1.4</td>
-<td>1.74</td>
-<td>Dropout</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1</td>
-<td>17</td>
-<td>2</td>
-<td>9773</td>
-<td>1</td>
-<td>1</td>
-<td>122.0</td>
-<td>1</td>
-<td>38</td>
-<td>37</td>
-<td>...</td>
-<td>0</td>
-<td>6</td>
-<td>10</td>
-<td>5</td>
-<td>12.400000</td>
-<td>0</td>
-<td>9.4</td>
-<td>-0.8</td>
-<td>-3.12</td>
-<td>Graduate</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>2</td>
-<td>39</td>
-<td>1</td>
-<td>8014</td>
-<td>0</td>
-<td>1</td>
-<td>100.0</td>
-<td>1</td>
-<td>37</td>
-<td>38</td>
-<td>...</td>
-<td>0</td>
-<td>6</td>
-<td>6</td>
-<td>6</td>
-<td>13.000000</td>
-<td>0</td>
-<td>13.9</td>
-<td>-0.3</td>
-<td>0.79</td>
-<td>Graduate</td>
-</tr>
-</tbody>
-</table>
-
-<p>5 rows × 37 columns</p>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>df_col_merged <span class="op">=</span> pd.concat([X, y], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">## The target variable, which consists of the status of each student in terms of </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">## enrollment, dropout or graduated, was separated from the main dataframe,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">## so I had to merge them to get a total of 37 columns.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="f519f0c5" class="cell" data-execution_count="154">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Pie chart for Gender variable</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X_copy <span class="op">=</span> X.copy()</span>
+</section>
+<section id="data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
+<div id="d538e0f5" class="cell" data-execution_count="172">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Stacked Bar graph for Course and Target variables</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Course'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Course'</span>].<span class="bu">map</span>(course_mapping)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing the numbers from 0 to Female and 1 to Male</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>gender_counts <span class="op">=</span> X_copy[<span class="st">'Gender'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Female'</span>, <span class="dv">1</span>: <span class="st">'Male'</span>}).value_counts()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Course'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'barh'</span>, stacked<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigning colors for genders</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>coloring <span class="op">=</span> {<span class="st">'Female'</span>: <span class="st">'#FFB5C0'</span>, <span class="st">'Male'</span>: <span class="st">'#ADD8E6'</span>}</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the pie chart</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.pie(</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    gender_counts,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>gender_counts.index,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    startangle<span class="op">=</span><span class="dv">140</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>[coloring[label] <span class="cf">for</span> label <span class="kw">in</span> gender_counts.index]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gender Distribution of the Student Population'</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.05</span>, <span class="st">'Figure 1. Pie Chart for Gender Variable'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Students'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Course'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Course and Enrollment Status'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 5. Horizontal Stacked Bar Chart: Student Status by Field of Study After Semester"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -448,17 +276,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In the pie chart above (Figure 1), we can see that the majority of the population from this dataset are those who identify as females. Approximately 64.8% of students from this dataset are females, and 35.2% of students are males. From this, we can possibly identify any relationships available that link gender with dropout rate, if any.</p>
-<div id="6ce33fa8" class="cell" data-execution_count="155">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Histogram for Age variable</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.hist(X_copy[<span class="st">'Age at enrollment'</span>], bins<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">'#B19CD9'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Age Distribution of the Student Population'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Age'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">'Figure 2. Histogram for Age Variable'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<p>As shown in Figure 5, students are distributed across different statuses: those who have dropped out, those still enrolled, and those who have graduated by the end of the semester. Notably, there appears to be a higher dropout rate in STEM-related fields of study.</p>
+<div id="5438bb08" class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Tuition fees up to date variable and Target variable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fees_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Tuition fees up to date'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Tuition fees up to date'</span>].<span class="bu">map</span>(fees_mapping)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Tuition fees up to date'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Tuition fees up to date'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Student Enrollment and Tuition Payment Status'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 6. Stacked Bar Chart of Student Fee Payment Status"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -467,31 +302,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This histogram (Figure 2) shows that the majority of students in the dataset are in their early 20s, with the distribution heavily skewed to the right as age increases. Specifically, approximately 3,000 students are in their early 20s, 500 are in their mid-20s, and there are more than 500 students aged 30 and up. The distribution of age may be used to determine the factors indicating student drop-out rate by identifying which age group is most at risk for dropping out.</p>
-<div id="66fc0d42" class="cell" data-execution_count="177">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Horizontal bar graph for Marital Status variable</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>marital_status_mapping <span class="op">=</span> {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="st">'Single'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: <span class="st">'Married'</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="st">'Widower'</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="st">'Divorced'</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="st">'Facto Union'</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="st">'Legally Separated'</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>X_copy[<span class="st">'Marital Status'</span>] <span class="op">=</span> X_copy[<span class="st">'Marital Status'</span>].<span class="bu">map</span>(marital_status_mapping)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>marital_status_counts <span class="op">=</span> X_copy[<span class="st">'Marital Status'</span>].value_counts()</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the horizontal bar graph</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>marital_status_counts.plot(kind<span class="op">=</span><span class="st">'barh'</span>, color<span class="op">=</span><span class="st">'#B19CD9'</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Marital Status in the Student Population'</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Marital Status'</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">'Figure 3. Horizontal Bar Graph for Marital Status Variable'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In Figure 6, we can see that there is a striking number of students who were unable to pay their tuition and are now not attending school. We can contrast this with the students who have paid their fees and have also graduated or are still enrolled. The majority of students who have not paid their tuition have dropped out, while the majority of students who have paid their tuition have either graduated or are still enrolled at their college.</p>
+<div id="83120aa6" class="cell" data-execution_count="160">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Debtor variable and Target variable</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>debtor_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Debtor'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Debtor'</span>].<span class="bu">map</span>(displaced_mapping)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Debtor'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Student Debt Status'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Debt Status'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 7. Stacked Bar Chart Representing Student Debt Status"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -500,153 +328,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>As we can see in the horizontal bar graph above (Figure 3), a majority of these students in the dataset are single. A handful are married or divorced, and very few, if any, are legally separated or a widower.</p>
-<div id="7386d3cb" class="cell" data-execution_count="157">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Bar Chart for Course variable</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>course_mapping <span class="op">=</span> {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">33</span>: <span class="st">'Biofuel Production Technologies'</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">171</span>: <span class="st">'Animation and Multimedia Design'</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8014</span>: <span class="st">'Social Service (evening attendance)'</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9003</span>: <span class="st">'Agronomy'</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9070</span>: <span class="st">'Communication Design'</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9085</span>: <span class="st">'Veterinary Nursing'</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9119</span>: <span class="st">'Informatics Engineering'</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9130</span>: <span class="st">'Equinculture'</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9147</span>: <span class="st">'Management'</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9238</span>: <span class="st">'Social Service'</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9254</span>: <span class="st">'Tourism'</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9500</span>: <span class="st">'Nursing'</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9556</span>: <span class="st">'Oral Hygiene'</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9670</span>: <span class="st">'Advertising and Marketing Management'</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9773</span>: <span class="st">'Journalism and Communication'</span>,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9853</span>: <span class="st">'Basic Education'</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9991</span>: <span class="st">'Management (evening attendance)'</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>X_copy <span class="op">=</span> pd.DataFrame(X)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace numerical values with labels</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>X_copy[<span class="st">'Course'</span>] <span class="op">=</span> X_copy[<span class="st">'Course'</span>].<span class="bu">map</span>(course_mapping)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Count occurrences of each education level</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>course_counts <span class="op">=</span> X_copy[<span class="st">'Course'</span>].value_counts()</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>course_counts.plot(kind<span class="op">=</span><span class="st">'barh'</span>, color<span class="op">=</span><span class="st">'#B19CD9'</span>)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Courses Taken Among Students'</span>)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Individuals'</span>)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Course'</span>)</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">'Figure 4. Horizontal Bar Chart for Courses Taken by Students during Study'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In Figure 7, we observe that most students are not in debt. However, among those who do have debt, a significant portion has dropped out, suggesting that financial difficulties may contribute to the decision to not complete college.</p>
+<div id="09299506" class="cell" data-execution_count="161">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Scholarship holder variable and Target variable</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Scholarship holder'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Scholarship holder'</span>].<span class="bu">map</span>(n_mapping)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Scholarship holder'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Scholarship Holder Status'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Scholarship Status'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 8. Student Scholarship Holders Illustrated in Stacked Bar Chart"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="DGT_HUM_140_Final_Project_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In the horizontal bar chart above (Figure 4), we can see that the majority of students in this dataset were taking nursing classes and management classes during the period in which data was collected. This could show that these students are studying nursing and business, respectively, during college.</p>
-</section>
-<section id="data-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
-<div id="d538e0f5" class="cell" data-execution_count="172">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Stacked Bar graph for Course and Target variables</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Course'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Course'</span>].<span class="bu">map</span>(course_mapping)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Course'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'barh'</span>, stacked<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Course'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Course and Enrollment Status'</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 5. Horizontal Stacked Bar Chart: Student Status by Field of Study After Semester"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="DGT_HUM_140_Final_Project_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>As shown in Figure 5, students are distributed across different statuses: those who have dropped out, those still enrolled, and those who have graduated by the end of the semester. Notably, there appears to be a higher dropout rate in STEM-related fields of study.</p>
-<div id="5438bb08" class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Tuition fees up to date variable and Target variable</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fees_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Tuition fees up to date'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Tuition fees up to date'</span>].<span class="bu">map</span>(fees_mapping)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Tuition fees up to date'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Tuition fees up to date'</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Student Enrollment and Tuition Payment Status'</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 6. Stacked Bar Chart of Student Fee Payment Status"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="DGT_HUM_140_Final_Project_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In Figure 6, we can see that there is a striking number of students who were unable to pay their tuition and are now not attending school. We can contrast this with the students who have paid their fees and have also graduated or are still enrolled. The majority of students who have not paid their tuition have dropped out, while the majority of students who have paid their tuition have either graduated or are still enrolled at their college.</p>
-<div id="83120aa6" class="cell" data-execution_count="160">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Debtor variable and Target variable</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>debtor_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Debtor'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Debtor'</span>].<span class="bu">map</span>(displaced_mapping)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Debtor'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Student Debt Status'</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Debt Status'</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 7. Stacked Bar Chart Representing Student Debt Status"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="DGT_HUM_140_Final_Project_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In Figure 7, we observe that most students are not in debt. However, among those who do have debt, a significant portion has dropped out, suggesting that financial difficulties may contribute to the decision to not complete college.</p>
-<div id="09299506" class="cell" data-execution_count="161">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot for Scholarship holder variable and Target variable</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>n_mapping <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"no"</span>, <span class="dv">1</span>: <span class="st">"yes"</span>}</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_col_merged[<span class="st">'Scholarship holder'</span>] <span class="op">=</span> df_col_merged[<span class="st">'Scholarship holder'</span>].<span class="bu">map</span>(n_mapping)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>pivot_table <span class="op">=</span> df_col_merged.pivot_table(index<span class="op">=</span><span class="st">'Scholarship holder'</span>, columns<span class="op">=</span><span class="st">'Target'</span>, aggfunc<span class="op">=</span><span class="st">'size'</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>pivot_table.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Scholarship Holder Status'</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Students'</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Students by Scholarship Status'</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Target'</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="st">"Figure 8. Student Scholarship Holders Illustrated in Stacked Bar Chart"</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="DGT_HUM_140_Final_Project_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
